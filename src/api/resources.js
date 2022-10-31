@@ -1,0 +1,1 @@
+export const Notes = 'https://pregod.rss3.dev/v1/notes';
