@@ -31,11 +31,11 @@ export default {
   <el-row style="padding-top: 100px; padding-left: 20px;">
     <el-col>
       <el-menu
-          default-active="2"
+          default-active="1"
           class="el-menu-vertical-demo"
           :router="true"
       >
-        <el-menu-item index="2" route="/">
+        <el-menu-item index="2" route="history">
           <span>History</span>
         </el-menu-item>
         <el-menu-item index="3" route="watchlist">
