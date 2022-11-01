@@ -11,7 +11,7 @@ const router = createRouter({
             component: HomeView
         },
         {
-            path: '/history',
+            path: '/history/:address',
             name: 'history',
             component: HistoryView,
             props: true

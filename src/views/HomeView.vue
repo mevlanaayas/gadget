@@ -18,7 +18,7 @@ export default {
       }
     },
     search() {
-      this.$router.push({name: 'history', props: {address: "this.address"}})
+      this.$router.push({name: 'history', params: {address: this.address}})
     }
   },
   mounted() {
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template>
-  <el-col>
+  <el-col :offset="3">
     <el-row>
       <h1 style="color: white; margin-bottom: 0">Gadget</h1>
     </el-row>
@@ -35,10 +35,13 @@ export default {
       <h4 style="color: white; margin-top: 10px">All your crypto history, at one place</h4>
     </el-row>
     <el-row>
-      <el-col :span="12" :offset="6">
+      <el-col :md="12" :sm="24">
         <h2 style="color: white; margin-bottom: 0">Connect Your Wallet</h2>
         <h4 style="color: white; margin-top: 10px">You can connect your wallet instead of copying your address💡</h4>
-        <el-button @click="connectWallet" size="large" style="width: 50%; margin-top: 10px; margin-bottom: 25px">Connect
+        <el-button class="hidden-sm-and-up" @click="connectWallet" size="large" style="width: 100%; margin-top: 10px; margin-bottom: 25px">Connect
+          MetaMask
+        </el-button>
+        <el-button class="hidden-xs-only" @click="connectWallet" size="large" style="width: 50%; margin-top: 10px; margin-bottom: 25px">Connect
           MetaMask
         </el-button>
         <el-divider style="margin-top: 35px; margin-bottom: 35px" border-style="dashed"/>

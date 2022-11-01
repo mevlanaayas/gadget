@@ -67,7 +67,7 @@ export default {
 </script>
 
 <template>
-  <el-menu class="hidden-sm-and-down" mode="horizontal" :router="true">
+  <el-menu mode="horizontal" :router="true">
     <el-menu-item route="/" index="home" style="padding: 5px">
       <el-avatar size="large" shape="square" fit="fill"
                  src="https://i1.sndcdn.com/artworks-OgUa4dwytPUh4Cpu-StBTsQ-t500x500.jpg"></el-avatar>

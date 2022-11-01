@@ -7,8 +7,9 @@ import Aside from "@/components/Aside.vue";
 
 <template>
   <Header></Header>
+  <el-row><Aside class="hidden-sm-and-up"></Aside></el-row>
   <el-row>
-    <el-col :span="3"><Aside></Aside></el-col>
+    <el-col :span="3" class="hidden-xs-only"><Aside></Aside></el-col>
     <el-col :span="21">
       <el-main>
         <RouterView/>
