@@ -11,12 +11,12 @@ export default {
       tagFilters: [],
       typeFilters: [],
       colorMapping: {
-        "social": '#63be2f',
-        "transaction": '#e1ba1d',
-        "exchange": '#44c799',
-        "collectible": '#fc6767',
-        "donation": '#2714d3',
-        "governance": '#581ba6'
+        "social": null,
+        "transaction": null,
+        "exchange": null,
+        "collectible": null,
+        "donation": null,
+        "governance": null
       }
     }
   },
