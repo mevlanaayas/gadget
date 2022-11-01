@@ -1,6 +1,5 @@
 <script>
 import Api from "@/api";
-import {addressStore} from '@/stores/address'
 
 export default {
   props: ['address'],
@@ -40,7 +39,7 @@ export default {
   mounted() {
     let params = {
       "address": [
-        this.address || addressStore().address
+        this.address
       ],
       "limit": 500,
       "refresh": false,

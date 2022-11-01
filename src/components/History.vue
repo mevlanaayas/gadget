@@ -1,8 +1,13 @@
 <script>
 import Api from "@/api";
+import {addressStore} from "@/stores/address";
 
 export default {
   name: "Welcome",
+  setup() {
+    const store = addressStore()
+    return {store}
+  },
   data() {
     return {
       info: null,
@@ -33,24 +38,27 @@ export default {
     },
     toUpperCase(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
+    },
+    getHistory() {
+      let params = {
+        "address": [
+          this.store.address
+        ],
+        "limit": 500,
+        "refresh": false,
+        "include_poap": false,
+        "ignore_contract": false,
+        "count_only": false,
+        "query_status": false
+      }
+      Api.GetNotes(params)
+          .then(response => {
+            this.info = response.data.result
+          })
     }
   },
   mounted() {
-    let params = {
-      "address": [
-        "0xF38b1EE6dF8E680fd367f1a7EEb70E21e7002a80"
-      ],
-      "limit": 500,
-      "refresh": false,
-      "include_poap": false,
-      "ignore_contract": false,
-      "count_only": false,
-      "query_status": false
-    }
-    Api.GetNotes(params)
-        .then(response => {
-          this.info = response.data.result
-        })
+    this.getHistory()
   }
 }
 </script>

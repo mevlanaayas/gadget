@@ -5,7 +5,6 @@ export default {
   name: "Header",
   setup() {
     const store = addressStore()
-    store.address = 'new address'
     return {store}
   },
   data: function () {
@@ -28,6 +27,7 @@ export default {
         }
         const accounts = await window.ethereum.request({method: "eth_requestAccounts"});
         this.walletConnected = accounts.length === 1;
+        this.store.set(accounts[0])
       } catch (error) {
         console.error(error);
       }
@@ -41,14 +41,20 @@ export default {
           return
         }
         this.walletConnected = false
+        this.store.clear()
       } catch (error) {
         console.error(error);
       }
       this.disconnecting = false;
     },
     handleSelect(key) {
+      console.log(key)
+      if (key.index === "home") {
+        this.$router.push({name: 'home'})
+      }
     },
-    search() {
+    search(key) {
+      this.$router.push({name: 'history', params: {address: this.inputAddress}})
     }
   },
   mounted() {
@@ -59,16 +65,18 @@ export default {
     window.ethereum.on("accountsChanged", function (accounts) {
       if (accounts.length === 0) {
         that.walletConnected = false;
+        that.store.clear()
+      } else {
+        that.store.set(accounts[0])
       }
-      that.store.set()
     });
   }
 };
 </script>
 
 <template>
-  <el-menu mode="horizontal" :router="true">
-    <el-menu-item route="/" index="home" style="padding: 5px">
+  <el-menu mode="horizontal" default-active="1">
+    <el-menu-item index="home" style="padding: 5px" @click="handleSelect">
       <el-avatar size="large" shape="square" fit="fill"
                  src="https://i1.sndcdn.com/artworks-OgUa4dwytPUh4Cpu-StBTsQ-t500x500.jpg"></el-avatar>
     </el-menu-item>
@@ -81,8 +89,8 @@ export default {
         type="text"
         size="large"
     />
-    <el-menu-item style="padding-top: 15px">
-      <el-button size="large" @click="search">
+    <el-menu-item style="padding-top: 15px" @click="search">
+      <el-button size="large">
         Search
       </el-button>
     </el-menu-item>

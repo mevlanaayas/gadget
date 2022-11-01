@@ -9,19 +9,30 @@ import {
 
 export default {
   name: "Aside",
+  setup() {
+    const store = addressStore()
+    return {store}
+  },
   data: function () {
-    return {
-      address: addressStore().address
-    };
+    return {}
   },
   methods: {
     handleSelect(key) {
+      if (key.index === '2') {
+        this.$router.push({name: 'history', params: {address: this.store.address}})
+      }
+      if (key.index === '3') {
+        this.$router.push({name: 'watchlist'})
+      }
+      if (key.index === '4') {
+        this.$router.push({name: 'recent'})
+      }
     }
   },
   mounted() {
     let that = this;
   }
-};
+}
 </script>
 
 <template>
@@ -30,17 +41,16 @@ export default {
       <el-menu
           mode="horizontal"
           default-active="1"
-          :router="true"
       >
-        <el-menu-item index="2" :route="{name: 'history', params: {address: this.address}}">
+        <el-menu-item index="2" @click="handleSelect">
           <span>History</span>
         </el-menu-item>
-        <el-menu-item index="3" route="watchlist">
+<!--        <el-menu-item index="3" @click="handleSelect">
           <span>Watchlist</span>
         </el-menu-item>
-        <el-menu-item index="4" route="recent">
+        <el-menu-item index="4" @click="handleSelect">
           <span>Recent Searches</span>
-        </el-menu-item>
+        </el-menu-item>-->
       </el-menu>
     </el-col>
   </el-row>
@@ -49,17 +59,16 @@ export default {
       <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
-          :router="true"
       >
-        <el-menu-item index="2" :route="{name: 'history', params: {address: this.address}}">
+        <el-menu-item index="2" @click="handleSelect">
           <span>History</span>
         </el-menu-item>
-        <el-menu-item index="3" route="watchlist">
+<!--        <el-menu-item index="3" @click="handleSelect">
           <span>Watchlist</span>
         </el-menu-item>
-        <el-menu-item index="4" route="recent">
+        <el-menu-item index="4" @click="handleSelect">
           <span>Recent Searches</span>
-        </el-menu-item>
+        </el-menu-item>-->
       </el-menu>
     </el-col>
   </el-row>
